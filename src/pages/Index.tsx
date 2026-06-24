@@ -154,7 +154,7 @@ const Index = () => {
                 let cls = 'w-full text-left px-6 py-4 rounded-2xl border-2 text-base font-medium transition-all duration-200 ';
                 if (selected === null) {
                   cls += 'border-border bg-background hover:border-primary hover:bg-primary/5 hover:scale-[1.02] active:scale-[0.98] cursor-pointer';
-                } else if (isCorrect) {
+                } else if (isSelected && isCorrect) {
                   cls += 'border-green-400 bg-green-50 text-green-700 scale-[1.01]';
                 } else if (isWrongChoice) {
                   cls += 'border-destructive bg-destructive/10 text-destructive';
