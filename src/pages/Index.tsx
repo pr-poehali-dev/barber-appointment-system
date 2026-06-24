@@ -244,7 +244,7 @@ const Index = () => {
             <div className="mt-8 border-t border-border/40 pt-8 text-center">
               <p className="text-muted-foreground text-sm mb-4">Твой подарок лежит по QR-коду</p>
               <img
-                src="https://cdn.poehali.dev/projects/4e4ff22e-1300-4f3a-845c-a8e9deca7d3e/bucket/59f569bb-cdb3-4f9a-a0e6-640ad4edc27d.png"
+                src="https://cdn.poehali.dev/projects/4e4ff22e-1300-4f3a-845c-a8e9deca7d3e/bucket/31524b0e-40ee-43a2-8963-e40c3ec14a97.png"
                 alt="QR-код с подарком"
                 className="mx-auto w-72 h-72 rounded-2xl"
               />
