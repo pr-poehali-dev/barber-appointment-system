@@ -58,15 +58,12 @@ const QUESTIONS = [
 
 type Screen = 'intro' | 'quiz' | 'success' | 'congrats';
 
-const CONGRATS_TEXT = `Танюш, с днём рождения!
-
-Ты — человек, который умеет превращать обычные моменты в особенные. Наши разговоры о заборах, люстрах и поездках на красненьком — это маленькие детали большой и классной жизни, которую ты проживаешь.
-
-Пусть в этот день всё будет именно так, как ты хочешь: уютно, по-своему, без лишней суеты. Ну или наоборот — весело и неожиданно, если вдруг кто-то всё-таки вытащит 😄
-
-Желаю тебе здоровья, тепла, исполнения задуманного и ещё больше поводов для улыбки.
-
-С любовью и уважением ✨`;
+const CONGRATS_PARAGRAPHS = [
+  'Сегодня особенный день, даже если ты решила просто остаться дома. Ты каждый день заслуживаешь миллиона поводов для улыбки, но сегодня их должно быть ещё больше.',
+  'Меня всегда восхищало твоё умение быть собой в любых обстоятельствах, это в тебе прекрасно. Ты можешь проявлять доброту, или показывать колючий характер, но это именно то, что делает тебя особенной.',
+  'Ты очень искренний человек и заслуживаешь самого лучшего. Мне не описать словами, как я рад, что в конце декабря 2025 года ты приехала в Черноголовку, и мы познакомились. Я благодарен тебе за доверие, которое ты проявляла, и за то, что я сам могу довериться тебе.',
+  'Я хочу, чтобы ты знала — в любых обстоятельствах ты можешь быть уверена, что если ты обратишься ко мне, то я сделаю всё, чтобы тебе помочь.',
+];
 
 const Index = () => {
   const [screen, setScreen] = useState<Screen>('intro');
@@ -231,14 +228,8 @@ const Index = () => {
       {screen === 'congrats' && (
         <div className="animate-pop-in w-full max-w-xl py-8">
           <div className="bg-card rounded-3xl shadow-2xl border border-border/40 p-8 md:p-12">
-            <div className="text-center mb-8">
-              <span className="text-5xl">🌸</span>
-              <h2 className="font-display text-4xl md:text-5xl font-semibold text-primary italic mt-3">
-                С Днём рождения!
-              </h2>
-            </div>
             <div>
-              {CONGRATS_TEXT.split('\n\n').map((para, i) => (
+              {CONGRATS_PARAGRAPHS.map((para, i) => (
                 <p
                   key={i}
                   className="text-foreground/85 leading-relaxed text-base md:text-lg mb-5 last:mb-0 animate-float-up"
@@ -248,8 +239,14 @@ const Index = () => {
                 </p>
               ))}
             </div>
-            <div className="mt-8 text-center text-3xl tracking-widest">
-              🌸 🎂 ✨ 🎈 💐
+            <p className="mt-8 text-foreground font-semibold text-lg">Коля</p>
+            <div className="mt-8 border-t border-border/40 pt-8 text-center">
+              <p className="text-muted-foreground text-sm mb-4">Твой подарок лежит по QR-коду</p>
+              <img
+                src="https://cdn.poehali.dev/projects/4e4ff22e-1300-4f3a-845c-a8e9deca7d3e/bucket/59f569bb-cdb3-4f9a-a0e6-640ad4edc27d.png"
+                alt="QR-код с подарком"
+                className="mx-auto w-48 h-48 rounded-2xl"
+              />
             </div>
           </div>
         </div>
