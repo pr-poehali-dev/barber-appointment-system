@@ -25,11 +25,13 @@ const QUESTIONS = [
     text: 'Выбери словосочетание, которое вызывает больше эмоций',
     options: ['шкаф в гостиную', 'люстра на кухню', 'забор для дома'],
     correct: 2,
+    popup: '«Таня, мне срочно нужно поговорить с тобой, приедь. Мне нужен новый забор...»',
   },
   {
     text: 'На чём ты ездишь?',
     options: ['на машине', 'на такси', 'на красненьком', 'на автобусе', 'на синеньком'],
     correct: 2,
+    popup: 'Бинго! Только не иди сейчас нацеловывать его, сначала дойди до конца этого квиза 😉',
   },
   {
     text: 'Как ты планировала провести сегодняшний день?',
@@ -39,6 +41,7 @@ const QUESTIONS = [
       'я буду дома, и пусть хоть одна ... попробует меня вытащить',
     ],
     correct: 2,
+    popup: '«На работе скажу, что останусь дома, а дома скажу, что буду на работе». Не даром тест на определение, какое ты животное, показал, что ты лиса 🦊',
   },
   {
     text: 'Трактор нужен, чтобы...',
@@ -49,6 +52,7 @@ const QUESTIONS = [
       'Понтоваться тем, что у тебя есть трактор',
     ],
     correct: 2,
+    popup: '«С этой самогонки вообще не плохо!». Не забывай открывать окна перед сном после самогона, сжалься над Баки 😿',
   },
 ];
 
@@ -71,6 +75,7 @@ const Index = () => {
   const [wrong, setWrong] = useState(false);
   const [shakeKey, setShakeKey] = useState(0);
   const [animKey, setAnimKey] = useState(0);
+  const [popup, setPopup] = useState<string | null>(null);
   const wrongTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => () => { if (wrongTimerRef.current) clearTimeout(wrongTimerRef.current); }, []);
@@ -82,14 +87,8 @@ const Index = () => {
     if (idx === q.correct) {
       setWrong(false);
       setTimeout(() => {
-        if (qIndex < QUESTIONS.length - 1) {
-          setQIndex(qIndex + 1);
-          setSelected(null);
-          setAnimKey(k => k + 1);
-        } else {
-          setScreen('success');
-        }
-      }, 700);
+        setPopup(q.popup);
+      }, 400);
     } else {
       setWrong(true);
       setShakeKey(k => k + 1);
@@ -97,6 +96,17 @@ const Index = () => {
         setSelected(null);
         setWrong(false);
       }, 1800);
+    }
+  };
+
+  const handlePopupContinue = () => {
+    setPopup(null);
+    if (qIndex < QUESTIONS.length - 1) {
+      setQIndex(qIndex + 1);
+      setSelected(null);
+      setAnimKey(k => k + 1);
+    } else {
+      setScreen('success');
     }
   };
 
@@ -136,13 +146,13 @@ const Index = () => {
           <div className="mb-8">
             <div className="flex justify-between text-sm text-muted-foreground mb-2">
               <span>Вопрос {qIndex + 1} из {QUESTIONS.length}</span>
-              <span>{Math.round(progress + 33)}%</span>
+              <span>{Math.round(progress + 25)}%</span>
             </div>
             <div className="h-2 rounded-full bg-muted overflow-hidden">
               <div
                 className="h-full rounded-full transition-all duration-500"
                 style={{
-                  width: `${progress + 33}%`,
+                  width: `${progress + 25}%`,
                   background: 'linear-gradient(90deg, hsl(340 80% 58%), hsl(15 90% 65%))',
                 }}
               />
@@ -241,6 +251,25 @@ const Index = () => {
             <div className="mt-8 text-center text-3xl tracking-widest">
               🌸 🎂 ✨ 🎈 💐
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* POPUP */}
+      {popup && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-foreground/40 backdrop-blur-sm" onClick={handlePopupContinue} />
+          <div className="animate-pop-in relative bg-card rounded-3xl shadow-2xl border border-border/40 p-8 max-w-sm w-full text-center z-10">
+            <div className="text-4xl mb-4">✅</div>
+            <p className="text-foreground/90 text-base md:text-lg leading-relaxed mb-7">
+              {popup}
+            </p>
+            <button
+              onClick={handlePopupContinue}
+              className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-primary text-primary-foreground font-semibold text-base shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200"
+            >
+              Продолжить →
+            </button>
           </div>
         </div>
       )}
