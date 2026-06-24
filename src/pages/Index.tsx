@@ -246,7 +246,7 @@ const Index = () => {
               <img
                 src="https://cdn.poehali.dev/projects/4e4ff22e-1300-4f3a-845c-a8e9deca7d3e/bucket/59f569bb-cdb3-4f9a-a0e6-640ad4edc27d.png"
                 alt="QR-код с подарком"
-                className="mx-auto w-48 h-48 rounded-2xl"
+                className="mx-auto w-72 h-72 rounded-2xl"
               />
             </div>
           </div>
