@@ -242,7 +242,7 @@ const Index = () => {
             </div>
             <p className="mt-8 text-foreground font-semibold text-lg">Коля</p>
             <div className="mt-8 border-t border-border/40 pt-8 text-center">
-              <p className="text-muted-foreground text-sm mb-4">Твой подарок лежит по QR-коду</p>
+              <p className="text-muted-foreground text-sm mb-4">Твои желания должны исполняться. Даже маленькие, как это. Переходи по QR-коду</p>
               <img
                 src="https://cdn.poehali.dev/projects/4e4ff22e-1300-4f3a-845c-a8e9deca7d3e/bucket/31524b0e-40ee-43a2-8963-e40c3ec14a97.png"
                 alt="QR-код с подарком"
